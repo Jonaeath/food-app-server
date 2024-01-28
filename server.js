@@ -7,6 +7,8 @@ require("dotenv").config();
 app.use(cors());
 app.use(express.json());
 
+require("./database/db");
+
 app.get("/", (req, res) => {
   res.send("Food app server is running");
 });
