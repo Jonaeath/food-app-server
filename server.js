@@ -9,6 +9,8 @@ app.use(express.json());
 
 require("./database/db");
 
+app.use("/api", require("./Routes/CreateUser"));
+
 app.get("/", (req, res) => {
   res.send("Food app server is running");
 });

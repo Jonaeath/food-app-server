@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
-const mongodburi = `mongodb+srv://${process.env.USER_DB}:${process.env.USER_PASSWD}@cluster0.pg0dj0q.mongodb.net/?retryWrites=true&w=majority`;
+require("dotenv").config();
+
+const mongodburi = `mongodb+srv://${process.env.USER_DB}:${process.env.USER_PASSWD}@cluster0.pg0dj0q.mongodb.net/food-app`;
 
 const mongodb = async () => {
   await mongoose
