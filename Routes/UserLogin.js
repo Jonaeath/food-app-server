@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/userSchema");
 const { body, validationResult } = require("express-validator");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 router.post(
   "/userlogin",
@@ -21,7 +23,11 @@ router.post(
         return res.status(400).json({ errors: "Try Login with correct email" });
       }
 
-      if (req.body.password !== userData.password) {
+      passwordCompare = await bcrypt.compare(
+        req.body.password,
+        userData.password
+      );
+      if (!passwordCompare) {
         return res
           .status(400)
           .json({ errors: "Try Login with correct Password" });

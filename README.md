@@ -4,3 +4,7 @@ Lecture No 7. MERN Project Series | Sign Up & Login page, Express Validator
 
 - npm install express-validator
 - This validation use for createUser
+
+- For Password Security-
+  bcrypt.js - A library to help you hash passwords
+  bcrypt adds a random piece of data, called salt, to create a unique hash that is almost impossible to break with automated guesses during hash dictionary and brute force attacks.
