@@ -10,6 +10,7 @@ app.use(express.json());
 require("./database/db");
 
 app.use("/api", require("./Routes/CreateUser"));
+app.use("/api", require("./Routes/UserLogin"));
 
 app.get("/", (req, res) => {
   res.send("Food app server is running");
