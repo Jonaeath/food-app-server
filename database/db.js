@@ -20,9 +20,14 @@ const mongodb = async () => {
   //Fetch data for display Front-end
   const foodDataCollection = mongoose.connection.db.collection("foodData");
   const allFoodsData = await foodDataCollection.find({}).toArray();
-  // console.log(allFoodDatas);
   global.allFoodsData = allFoodsData;
   // console.log(global.allFoodsData);
+
+  //Fetch foodCategory for display Front-end
+  const foodDataCategory = mongoose.connection.db.collection("foodCategory");
+  const allFoodCategory = await foodDataCategory.find({}).toArray();
+  global.allFoodCategory = allFoodCategory;
+  // console.log(global.allFoodCategory);
 };
 
 module.exports = mongodb();
