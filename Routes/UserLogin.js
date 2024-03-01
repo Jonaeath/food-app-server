@@ -32,7 +32,23 @@ router.post(
           .status(400)
           .json({ errors: "Try Login with correct Password" });
       }
-      res.json({ success: true });
+
+      // Generate JWT token
+      const payload = {
+        user: {
+          id: userData.id,
+        },
+      };
+
+      jwt.sign(
+        payload,
+        "your_secret_key",
+        { expiresIn: 3600 },
+        (err, token) => {
+          if (err) throw err;
+          res.json({ success: true, token }); // Send token to frontend
+        }
+      );
     } catch (error) {
       console.error(error);
       res.status(500).json({ success: false, error: "Server error" });
