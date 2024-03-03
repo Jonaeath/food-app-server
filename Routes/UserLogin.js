@@ -23,7 +23,7 @@ router.post(
         return res.status(400).json({ errors: "Try Login with correct email" });
       }
 
-      passwordCompare = await bcrypt.compare(
+      const passwordCompare = await bcrypt.compare(
         req.body.password,
         userData.password
       );
@@ -37,16 +37,17 @@ router.post(
       const payload = {
         user: {
           id: userData.id,
+          email: userData.email // Adding email to payload
         },
       };
 
       jwt.sign(
         payload,
         "your_secret_key",
-        { expiresIn: 3600 },
+        { expiresIn: 60 }, // 3600 seconds = 1 hour
         (err, token) => {
           if (err) throw err;
-          res.json({ success: true, token }); // Send token to frontend
+          res.json({ success: true, token, email }); // Send token and email to frontend
         }
       );
     } catch (error) {
